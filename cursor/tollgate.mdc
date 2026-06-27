@@ -1,0 +1,141 @@
+---
+description: Instructions for integrating Tollgate LLM cost tracking and gross-margin observability into AI products. Apply when the user asks to add Tollgate, track LLM costs per customer, or monitor gross margin.
+globs: []
+alwaysApply: false
+---
+
+# Tollgate Integration
+
+Tollgate tracks LLM provider costs per customer and joins them with revenue to show real-time gross margin. One wrap of your provider client is all it takes.
+
+## Setup
+
+```bash
+TOLLGATE_API_KEY=tg_live_your_key_here
+```
+
+```bash
+npm install @tollgateai/sdk   # TypeScript
+pip install tollgateai        # Python
+```
+
+## Wrap your provider (TypeScript)
+
+**Anthropic:**
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+import { createTollgateClient, wrapAnthropic } from '@tollgateai/sdk';
+
+const tollgate = createTollgateClient();
+const anthropic = wrapAnthropic(new Anthropic(), tollgate, {
+  customerId: 'cust_acme',  // required — your external customer id
+  runId: 'ticket_8842',     // groups all calls for one task
+});
+// Use anthropic normally — Tollgate tracks in the background.
+```
+
+**OpenAI:**
+```typescript
+import OpenAI from 'openai';
+import { createTollgateClient, wrapOpenAI } from '@tollgateai/sdk';
+
+const tollgate = createTollgateClient();
+const openai = wrapOpenAI(new OpenAI(), tollgate, { customerId: 'cust_acme', runId: 'ticket_8842' });
+```
+
+**OpenAI-compatible gateways (Groq, OpenRouter, vLLM, Together):**
+```typescript
+const client = wrapOpenAI(
+  new OpenAI({ baseURL: 'https://api.groq.com/openai/v1', apiKey: process.env.GROQ_API_KEY }),
+  tollgate,
+  { customerId: 'cust_acme', runId: 'ticket_8842', provider: 'openai_compatible' },
+);
+```
+
+**Google Gemini:**
+```typescript
+import { GoogleGenAI } from '@google/genai';
+import { createTollgateClient, wrapGemini } from '@tollgateai/sdk';
+const gemini = wrapGemini(new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY }), tollgate, { customerId: 'cust_acme', runId: 'ticket_8842' });
+```
+
+**AWS Bedrock:**
+```typescript
+import { BedrockRuntimeClient } from '@aws-sdk/client-bedrock-runtime';
+import { createTollgateClient, wrapBedrock } from '@tollgateai/sdk';
+const bedrock = wrapBedrock(new BedrockRuntimeClient({ region: 'us-east-1' }), tollgate, { customerId: 'cust_acme', runId: 'ticket_8842' });
+```
+
+## Wrap your provider (Python)
+
+```python
+from tollgate import create_tollgate_client, wrap_anthropic, wrap_openai
+
+tollgate = create_tollgate_client()
+
+# Anthropic
+import anthropic
+client = wrap_anthropic(anthropic.Anthropic(), tollgate, customer_id="cust_acme", run_id="ticket_8842")
+
+# OpenAI
+from openai import OpenAI
+client = wrap_openai(OpenAI(), tollgate, customer_id="cust_acme", run_id="ticket_8842")
+```
+
+## Streaming (OpenAI only — required)
+
+```typescript
+const stream = await openai.chat.completions.create({
+  model: 'gpt-4o',
+  messages: [...],
+  stream: true,
+  stream_options: { include_usage: true }, // required for Tollgate to see token counts
+});
+```
+
+## Close a multi-step run with outcome
+
+```typescript
+await tollgate.resolve({
+  runId: 'ticket_8842',
+  customerId: 'cust_acme',
+  outcome: 'resolved',      // 'resolved' | 'escalated' | 'failed'
+  revenueUnitCents: 50,     // $0.50 per resolved ticket
+});
+```
+
+`escalated`/`failed` suppresses activity revenue but still tracks cost — making unprofitable runs visible on the dashboard.
+
+## Manual tracking (no wrapper)
+
+```typescript
+await tollgate.track({
+  customerId: 'cust_acme',
+  runId: 'ticket_8842',
+  provider: 'anthropic',        // 'anthropic' | 'openai' | 'openai_compatible' | 'bedrock' | 'google'
+  model: 'claude-opus-4-8',
+  tokensIn: 1200,
+  tokensOut: 340,
+  reasoningTokens: 0,           // thinking tokens — bill at output rate
+  cachedTokens: 0,              // cache-read tokens — reduced rate
+  idempotencyKey: `${runId}#step_1`,  // stable, unique per event
+  latencyMs: 820,
+});
+```
+
+## Key rules
+
+- `idempotencyKey` must be stable and unique per event (e.g. `runId#step_N`). Duplicates are silently dropped.
+- Never send prompt content (`messages`, `content`, `input`, `output` etc.) — rejected with HTTP 400.
+- `reasoningTokens` and `cachedTokens` must be passed separately — they bill at different rates.
+- `outcome` goes only on the **closing** event of a run.
+
+## REST endpoint
+
+```
+POST https://app.tollgate.ai/api/track
+Authorization: Bearer tg_live_…
+Content-Type: application/json
+```
+
+Full field reference: https://tollgate.ai/docs/track-api
