@@ -1,6 +1,6 @@
 # tollgate-skill
 
-> AI coding tool instructions for integrating [Tollgate](https://tollgate.ai) — real-time gross-margin observability for AI products.
+> AI coding tool instructions for integrating [Tollgate](https://www.tollgateai.dev) — real-time gross-margin observability for AI products.
 
 Works with **Claude Code**, **Cursor**, **GitHub Copilot**, **Windsurf**, and **Codex**. One install, your AI coding assistant knows how to wire up Tollgate correctly.
 
@@ -81,7 +81,7 @@ curl -fsSL https://raw.githubusercontent.com/Tollgateai/tollgate-skill/main/inst
 
 ## What you'll need
 
-- A Tollgate account — [sign up at tollgate.ai](https://tollgate.ai)
+- A Tollgate account — [sign up at tollgate.ai](https://www.tollgateai.dev)
 - An API key from **Settings → API Keys** (prefix: `tg_live_…`)
 - The Tollgate SDK: `npm install @tollgateai/sdk` or `pip install tollgateai`
 
@@ -108,7 +108,8 @@ tollgate-skill/
 
 ## Links
 
-- [Tollgate Dashboard](https://app.tollgate.ai)
-- [SDK — @tollgateai/sdk](https://github.com/Tollgateai/sdk)
-- [Docs](https://tollgate.ai/docs)
+- [Tollgate Dashboard](https://www.tollgateai.dev/dashboard)
+- [SDK — @tollgateai/sdk](https://www.npmjs.com/package/@tollgateai/sdk) · [source](https://github.com/Tollgateai/tollgate/tree/main/packages/tollgate-sdk-ts)
+- [Python SDK — tollgateai](https://pypi.org/project/tollgateai/) · [source](https://github.com/Tollgateai/tollgate/tree/main/packages/tollgate-sdk-python)
+- [Docs](https://www.tollgateai.dev/docs)
 - [Main repo](https://github.com/Tollgateai/tollgate)

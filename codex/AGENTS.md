@@ -147,4 +147,4 @@ await tollgate.track({
 - 402: quota reached
 - 429: rate limited — check Retry-After header
 
-Full docs: https://tollgate.ai/docs
+Full docs: https://www.tollgateai.dev/docs

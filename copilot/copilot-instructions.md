@@ -119,7 +119,7 @@ await tollgate.resolve({
 ## Direct API call (any language)
 
 ```
-POST https://app.tollgate.ai/api/track
+POST https://www.tollgateai.dev/api/track
 Authorization: Bearer tg_live_…
 Content-Type: application/json
 
@@ -134,4 +134,4 @@ Content-Type: application/json
 }
 ```
 
-Full reference: https://tollgate.ai/docs/track-api
+Full reference: https://www.tollgateai.dev/docs

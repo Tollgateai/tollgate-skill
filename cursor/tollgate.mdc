@@ -133,9 +133,9 @@ await tollgate.track({
 ## REST endpoint
 
 ```
-POST https://app.tollgate.ai/api/track
+POST https://www.tollgateai.dev/api/track
 Authorization: Bearer tg_live_…
 Content-Type: application/json
 ```
 
-Full field reference: https://tollgate.ai/docs/track-api
+Full field reference: https://www.tollgateai.dev/docs

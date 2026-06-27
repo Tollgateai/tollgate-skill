@@ -120,4 +120,4 @@ Content-Type: application/json
   "idempotencyKey": "ticket_8842#step_1" }
 ```
 
-Full docs: https://tollgate.ai/docs
+Full docs: https://www.tollgateai.dev/docs

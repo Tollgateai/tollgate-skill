@@ -215,7 +215,7 @@ await tollgate.track({
 ### REST
 
 ```bash
-curl -X POST https://app.tollgate.ai/api/track \
+curl -X POST https://www.tollgateai.dev/api/track \
   -H "Authorization: Bearer tg_live_your_key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -280,6 +280,25 @@ Response: `{ "status": "created", "eventId": "..." }` or `{ "status": "duplicate
 | 402 | Monthly event quota reached. |
 | 429 | Rate limit exceeded — check `Retry-After` header. |
 | 500 | Internal error — event may not have been stored. |
+
+---
+
+## Register a customer before first usage (optional but recommended)
+
+Call `upsertCustomer()` before sending any usage events so the plan is ready and revenue is recognized from event one. This is especially important for `usage_based` pricing, where revenue is computed at ingest time.
+
+```typescript
+await tollgate.upsertCustomer({
+  externalId: 'cust_acme',          // must match the customerId used in track/wrap
+  name: 'Acme Corp',
+  plan: {
+    name: 'Growth',
+    pricingModel: 'per_unit',        // 'per_unit' | 'per_resolution' | 'usage_based' | 'per_seat' | 'flat' | 'hybrid'
+    unitRevenueCents: 50,            // $0.50 per resolved ticket
+    baseRevenueCents: 0,
+  },
+});
+```
 
 ---
 
