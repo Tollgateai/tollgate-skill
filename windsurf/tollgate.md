@@ -111,7 +111,7 @@ await tollgate.resolve({
 ## Direct REST API
 
 ```
-POST https://app.tollgate.ai/api/track
+POST https://tollgateai.dev/api/track
 Authorization: Bearer tg_live_…
 Content-Type: application/json
 

@@ -81,7 +81,7 @@ curl -fsSL https://raw.githubusercontent.com/Tollgateai/tollgate-skill/main/inst
 
 ## What you'll need
 
-- A Tollgate account — [sign up at tollgate.ai](https://www.tollgateai.dev)
+- A Tollgate account — [sign up at tollgateai](https://www.tollgateai.dev)
 - An API key from **Settings → API Keys** (prefix: `tg_live_…`)
 - The Tollgate SDK: `npm install @tollgateai/sdk` or `pip install tollgateai`
 
