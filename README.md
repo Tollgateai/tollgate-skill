@@ -109,7 +109,6 @@ tollgate-skill/
 ## Links
 
 - [Tollgate Dashboard](https://www.tollgateai.dev/dashboard)
-- [SDK — @tollgateai/sdk](https://www.npmjs.com/package/@tollgateai/sdk) · [source](https://github.com/Tollgateai/tollgate/tree/main/packages/tollgate-sdk-ts)
-- [Python SDK — tollgateai](https://pypi.org/project/tollgateai/) · [source](https://github.com/Tollgateai/tollgate/tree/main/packages/tollgate-sdk-python)
+- [SDK — @tollgateai/sdk](https://www.npmjs.com/package/@tollgateai/sdk) · [source](https://github.com/Tollgateai/tollgate-sdk/tree/main/packages/tollgate-sdk-ts)
+- [Python SDK — tollgateai](https://pypi.org/project/tollgateai/) · [source](https://github.com/Tollgateai/tollgate-sdk/tree/main/packages/tollgate-sdk-python)
 - [Docs](https://www.tollgateai.dev/docs)
-- [Main repo](https://github.com/Tollgateai/tollgate)
