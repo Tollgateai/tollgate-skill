@@ -1,7 +1,7 @@
 ---
 name: tollgate
 description: Integrate Tollgate to track LLM costs per customer and monitor gross margin in real time. Use when the user wants to add Tollgate to their AI product.
-version: 1.0.0
+version: 1.0.1
 ---
 
 # Tollgate Integration Skill
