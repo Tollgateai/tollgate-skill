@@ -1,6 +1,6 @@
 {
   "name": "tollgate-skill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI coding tool instructions for Tollgate — real-time gross-margin observability for AI agents",
   "bin": {
     "tollgate-skill": "./bin/tollgate-skill.js"
