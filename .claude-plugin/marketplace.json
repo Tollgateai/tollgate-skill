@@ -1,0 +1,18 @@
+{
+  "name": "tollgate",
+  "owner": { "name": "Tollgate", "url": "https://tollgateai.com" },
+  "plugins": [
+    {
+      "name": "tollgate",
+      "description": "Real-time gross-margin observability for AI agents. Wraps any LLM provider with cost + margin tracking in 2 lines.",
+      "category": "development",
+      "source": {
+        "source": "git",
+        "url": "https://github.com/Tollgateai/tollgate-skill.git",
+        "ref": "main"
+      },
+      "skills": ["./claude-code"],
+      "homepage": "https://github.com/Tollgateai/tollgate-skill"
+    }
+  ]
+}

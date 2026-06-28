@@ -1,0 +1,8 @@
+{
+  "name": "tollgate",
+  "description": "Real-time gross-margin observability for AI agents. Wraps any LLM provider with cost + margin tracking in 2 lines.",
+  "version": "1.0.0",
+  "author": { "name": "Tollgate", "url": "https://tollgateai.com" },
+  "keywords": ["ai", "cost", "margin", "observability", "llm", "agents"],
+  "homepage": "https://github.com/Tollgateai/tollgate-skill"
+}

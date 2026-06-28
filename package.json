@@ -1,0 +1,42 @@
+{
+  "name": "tollgate-skill",
+  "version": "1.0.0",
+  "description": "AI coding tool instructions for Tollgate — real-time gross-margin observability for AI agents",
+  "bin": {
+    "tollgate-skill": "./bin/tollgate-skill.js"
+  },
+  "files": [
+    "bin/",
+    "claude-code/",
+    "cursor/",
+    "copilot/",
+    "windsurf/",
+    "codex/",
+    "install.sh",
+    ".claude-plugin/"
+  ],
+  "keywords": [
+    "tollgate",
+    "llm",
+    "ai",
+    "cost",
+    "margin",
+    "observability",
+    "claude",
+    "cursor",
+    "copilot",
+    "windsurf",
+    "codex",
+    "agents"
+  ],
+  "author": "Tollgate <hello@tollgateai.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Tollgateai/tollgate-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tollgateai/tollgate-skill.git"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
