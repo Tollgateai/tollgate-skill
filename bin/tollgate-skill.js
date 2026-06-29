@@ -61,11 +61,12 @@ function usage() {
   console.log('Tollgate skill installer\n');
   console.log('Usage:');
   console.log('  npx tollgate-skill --tool claude     # Claude Code  (~/.claude/skills/tollgate/)');
+  console.log('  npx tollgate-skill --tool codex      # Codex          (AGENTS.md)');
   console.log('  npx tollgate-skill --tool cursor     # Cursor        (.cursor/rules/tollgate.mdc)');
   console.log('  npx tollgate-skill --tool copilot    # GitHub Copilot (.github/copilot-instructions.md)');
   console.log('  npx tollgate-skill --tool windsurf   # Windsurf      (.windsurf/rules/tollgate.md)');
-  console.log('  npx tollgate-skill --tool codex      # Codex          (AGENTS.md)');
   console.log('  npx tollgate-skill --tool all        # All of the above');
+  console.log('  npx tollgate-skill --all             # All of the above (shortcut)');
 }
 
 switch (tool) {
@@ -75,11 +76,12 @@ switch (tool) {
   case 'windsurf': installWindsurf(); break;
   case 'codex':    installCodex(); break;
   case 'all':
+  case '--all':
     installClaude();
+    installCodex();
     installCursor();
     installCopilot();
     installWindsurf();
-    installCodex();
     break;
   default:
     usage();

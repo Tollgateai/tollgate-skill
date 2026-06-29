@@ -2,7 +2,7 @@
 
 > AI coding tool instructions for integrating [Tollgate](https://www.tollgateai.dev) — real-time gross-margin observability for AI products.
 
-Works with **Claude Code**, **Cursor**, **GitHub Copilot**, **Windsurf**, and **Codex**. One install, your AI coding assistant knows how to wire up Tollgate correctly.
+Works with **Claude Code**, **Codex**, **Cursor**, **GitHub Copilot**, and **Windsurf**. One install, your AI coding assistant knows how to wire up Tollgate correctly.
 
 ---
 
@@ -19,6 +19,19 @@ Once installed, your AI coding assistant can:
 
 ## Install
 
+### Quick install via npx
+
+```bash
+npx tollgate-skill --tool claude     # Claude Code  (~/.claude/skills/tollgate/)
+npx tollgate-skill --tool codex      # Codex          (AGENTS.md)
+npx tollgate-skill --tool cursor     # Cursor        (.cursor/rules/tollgate.mdc)
+npx tollgate-skill --tool copilot    # GitHub Copilot (.github/copilot-instructions.md)
+npx tollgate-skill --tool windsurf   # Windsurf      (.windsurf/rules/tollgate.md)
+npx tollgate-skill --tool all        # All of the above
+```
+
+### Install via curl
+
 ### Claude Code
 
 ```bash
@@ -26,6 +39,14 @@ curl -fsSL https://raw.githubusercontent.com/Tollgateai/tollgate-skill/main/inst
 ```
 
 Installs to `~/.claude/skills/tollgate/SKILL.md`. Restart Claude Code, then type `/tollgate` to activate.
+
+### Codex
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Tollgateai/tollgate-skill/main/install.sh | bash -s -- --tool codex
+```
+
+Appends to (or creates) `AGENTS.md` in your project.
 
 ### Cursor
 
@@ -51,14 +72,6 @@ curl -fsSL https://raw.githubusercontent.com/Tollgateai/tollgate-skill/main/inst
 
 Installs to `.windsurf/rules/tollgate.md` in your project.
 
-### Codex
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/Tollgateai/tollgate-skill/main/install.sh | bash -s -- --tool codex
-```
-
-Appends to (or creates) `AGENTS.md` in your project.
-
 ### All tools at once
 
 ```bash
@@ -72,10 +85,10 @@ curl -fsSL https://raw.githubusercontent.com/Tollgateai/tollgate-skill/main/inst
 | Tool | Copy this file to... |
 |---|---|
 | Claude Code | `~/.claude/skills/tollgate/SKILL.md` |
+| Codex | `AGENTS.md` (project root) |
 | Cursor | `.cursor/rules/tollgate.mdc` |
 | GitHub Copilot | `.github/copilot-instructions.md` |
 | Windsurf | `.windsurf/rules/tollgate.md` |
-| Codex | `AGENTS.md` (project root) |
 
 ---
 
@@ -93,14 +106,14 @@ curl -fsSL https://raw.githubusercontent.com/Tollgateai/tollgate-skill/main/inst
 tollgate-skill/
   claude-code/
     SKILL.md          Claude Code skill (YAML frontmatter + full integration guide)
+  codex/
+    AGENTS.md         OpenAI Codex agent instructions
   cursor/
     tollgate.mdc      Cursor rule (.mdc format with glob config)
   copilot/
     copilot-instructions.md   GitHub Copilot workspace instructions
   windsurf/
     tollgate.md       Windsurf rule
-  codex/
-    AGENTS.md         OpenAI Codex agent instructions
   install.sh          One-liner installer for all tools
 ```
 

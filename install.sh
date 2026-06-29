@@ -64,20 +64,20 @@ case "$TOOL" in
   codex)    install_codex ;;
   all)
     install_claude_code
+    install_codex
     install_cursor
     install_copilot
     install_windsurf
-    install_codex
     ;;
   *)
     echo "Tollgate skill installer"
     echo ""
     echo "Usage:"
     echo "  bash install.sh --tool claude     # Claude Code (~/.claude/skills/tollgate/)"
+    echo "  bash install.sh --tool codex      # Codex (AGENTS.md)"
     echo "  bash install.sh --tool cursor     # Cursor (.cursor/rules/tollgate.mdc)"
     echo "  bash install.sh --tool copilot    # GitHub Copilot (.github/copilot-instructions.md)"
     echo "  bash install.sh --tool windsurf   # Windsurf (.windsurf/rules/tollgate.md)"
-    echo "  bash install.sh --tool codex      # Codex (AGENTS.md)"
     echo "  bash install.sh --tool all        # All of the above"
     echo ""
     echo "Or install for Claude Code (most common):"
